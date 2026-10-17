@@ -1,4 +1,5 @@
 import { fetchHeroes } from "@/utils/api";
+import { unstable_rethrow } from "next/navigation";
 import HeroCarouselClient, { HeroSlide } from "./HeroCarouselClient";
 
 const defaultHeroImages: HeroSlide[] = [
@@ -20,6 +21,7 @@ async function HeroCarousel() {
   try {
     heroes = await fetchHeroes();
   } catch (error) {
+    unstable_rethrow(error);
     console.error("Error fetching hero images:", error);
   }
 
